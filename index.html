@@ -1,0 +1,210 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Ritika ❤️</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle, #0b0b0f, #1a1a2e, #000);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+    color: #fff;
+  }
+
+  .container {
+    text-align: center;
+    background: rgba(0,0,0,0.55);
+    padding: 45px 55px;
+    border-radius: 22px;
+    box-shadow: 0 0 50px rgba(255, 0, 90, 0.35);
+    animation: fadeIn 2s ease;
+    max-width: 420px;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.85); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  h1 {
+    font-size: 3rem;
+    color: #ff4d6d;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+  }
+
+  .heart {
+    font-size: 3rem;
+    animation: beat 1s infinite;
+    margin-bottom: 15px;
+  }
+
+  @keyframes beat {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.35); }
+  }
+
+  #typing {
+    font-size: 1.15rem;
+    min-height: 90px;
+    line-height: 1.5;
+    color: #eaeaea;
+  }
+
+  .buttons {
+    margin-top: 30px;
+    position: relative;
+    height: 60px;
+  }
+
+  button {
+    padding: 12px 28px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+
+  #yes {
+    background: #ff4d6d;
+    color: white;
+    box-shadow: 0 0 25px rgba(255,77,109,0.9);
+  }
+
+  #yes:hover {
+    transform: scale(1.1);
+  }
+
+  #no {
+    background: #333;
+    color: #fff;
+    position: absolute;
+    left: 160px;
+  }
+
+  .final {
+    display: none;
+    font-size: 1.4rem;
+    margin-top: 25px;
+    color: #ffb3c6;
+    animation: fadeIn 1.5s ease;
+  }
+
+  .secret {
+    display: none;
+    margin-top: 15px;
+    font-size: 1.05rem;
+    color: #ddd;
+  }
+
+  .floating-heart {
+    position: absolute;
+    font-size: 18px;
+    animation: float 6s linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(100vh); }
+    100% { transform: translateY(-10vh); opacity: 0; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7c3f8cda33.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+  <h1>Ritika ❤️</h1>
+  <div class="heart">💖</div>
+
+  <div id="typing"></div>
+
+  <div class="buttons">
+    <button id="yes">Yes 💘</button>
+    <button id="no">No 🙃</button>
+  </div>
+
+  <div class="final" id="finalMsg">
+    I knew it ❤️  
+    <div class="secret" id="secretMsg">
+      You don’t know this yet,  
+      but choosing “Yes” just became  
+      my favorite moment this year.
+    </div>
+  </div>
+</div>
+
+<script>
+  /* Typing effect */
+  const text = Some people pass through our lives quietly…
+and some stay in our thoughts without trying.
+
+You did that to me.
+
+So tell me honestly —
+will you be my Valentine?;
+  let i = 0;
+  const typingDiv = document.getElementById("typing");
+
+  function typeText() {
+    if (i < text.length) {
+      typingDiv.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeText, 35);
+    }
+  }
+  typeText();
+
+  /* Music auto-play after interaction */
+  const music = document.getElementById("music");
+  document.body.addEventListener("click", () => {
+    music.play().catch(()=>{});
+  }, { once: true });
+
+  /* NO button escape */
+  const noBtn = document.getElementById("no");
+  noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 60);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  });
+
+  /* YES click */
+  const yesBtn = document.getElementById("yes");
+  const finalMsg = document.getElementById("finalMsg");
+  const secretMsg = document.getElementById("secretMsg");
+
+  yesBtn.addEventListener("click", () => {
+    finalMsg.style.display = "block";
+    setTimeout(() => secretMsg.style.display = "block", 1200);
+    yesBtn.style.display = "none";
+    noBtn.style.display = "none";
+  });
+/* Floating hearts */
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("floating-heart");
+    heart.innerText = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }
+  setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
